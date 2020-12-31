@@ -1,0 +1,45 @@
+{% extends "communitymgr/community_base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+ {% if socios %}
+ <h1 class="text-center">Listado de Socios</h1>
+    <table id="listadosocios" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>Número</th>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Dni</th>
+                <th>Direccion</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+    {% for socio in socios %}
+            <tr>
+                <td>{{socio.numero_de_socio}}</td>
+                <td>{{socio.nombre}}</td>
+                <td>{{socio.apellidos}}</td>
+                <td>{{socio.dni}}</td>
+                <td>{{socio.direccion}}</td>
+                <td><a href='{% url 'detalle-socio' socio.id %}'>Ver</a>   |   <a href='{% url 'actualiza-socio' socio.id%}'>Modificar</a></td>
+            </tr>
+    {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p>No hay socios en la lista</p>
+{% endif %}
+<script type="text/javascript" class="init">
+    $(document).ready(function() {
+        $('#listadosocios').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+            'csv', 'excel'],
+            "columnDefs": [
+            { "width": "1%", "targets": 0 }
+        ]},);
+    } );
+</script>
+{% endblock content %}

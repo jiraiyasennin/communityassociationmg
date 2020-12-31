@@ -1,0 +1,74 @@
+{% extends "communitymgr/community_base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+  <h1>Ficha de Socio</h1>
+  <table class="table w-auto">
+    <thead>
+      <tr class="bg-success">
+        <th scope="col">Datos</th>
+        <th scope="col"></th>
+       </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Estatus del socio:</td>
+        {% if object.estatus == 'AL' %}
+        <td>Alta</td>
+        {% else %}
+        <td>Baja</td>
+        {% endif %}
+      </tr>
+      <tr>
+        <td>Número de socio:</td>
+        <td>{{object.numero_de_socio}}</td>
+      </tr>
+      <tr>
+        <td>Nombre:</td>
+        <td>{{object.nombre}}</td>
+      </tr>
+      <tr>
+        <td>Apellidos:</td>
+        <td>{{object.apellidos}}</td>
+      </tr>
+      <tr>
+        <td>Dni:</td>
+        <td>{{object.dni}}</td>
+      </tr>
+      <tr>
+        <td>Fecha de nacimiento:</td>
+        <td>{{object.fecha_de_nacimiento}}</td>
+      </tr>
+      <tr>
+        <td>Dirección:</td>
+        <td>{{object.direccion}}</td>
+      </tr>
+      <tr>
+        <td>Código postal</td>
+        <td>{{object.codigo_postal}}</td>
+      </tr>
+      <tr>
+        <td>Localidad:</td>
+        <td>{{object.localidad}}</td>
+      </tr>
+      {% if object.telefono_fijo %}
+      <tr>
+        <td>Teléfono Fijo:</td>
+        <td>{{object.telefono_fijo}}</td>
+      </tr>
+      {% endif %}
+      <tr>
+        <td>Teléfono móvil:</td>
+        <td>{{object.telefono_movil}}</td>
+      </tr>
+      <tr>
+        <td>¿Pago al corriente?</td>
+        <td>{{object.pago_año_actual}}</td>
+      </tr>
+      <tr>
+        <td>Años pagados:</td>
+        <td>{{object.años_pagados}}</td>
+      </tr>
+    </tbody>
+  </table>
+{% endblock content %}

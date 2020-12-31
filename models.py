@@ -9,7 +9,7 @@ class socio(models.Model):
     direccion = models.CharField(max_length=200)
     codigo_postal = models.IntegerField()
     localidad = models.CharField(max_length=20)
-    telefono_fijo = models.IntegerField()
+    telefono_fijo = models.IntegerField(null = True)
     telefono_movil = models.IntegerField()
     #Constantes del pago actual
     PAGADO = 'SI'
@@ -22,6 +22,6 @@ class socio(models.Model):
     BAJA = 'BA'
     estados_de_estatus = [(ALTA,'Alta'),(BAJA,'Baja')]
     estatus = models.CharField(max_length=2, choices=estados_de_estatus, default=ALTA)
-    años_pagados = models.CharField(max_length=300)
+    años_pagados = models.CharField(max_length=300, null = True)
 
 

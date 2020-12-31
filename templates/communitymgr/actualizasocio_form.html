@@ -1,0 +1,66 @@
+{% extends "communitymgr/community_base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="content-section">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <h1 class="mt-4 mb-4">Actualización de Socios</h1>
+                <div class="form-row">
+                    <div class="form-group col-md-3 mb-0">
+                    {{ form.numero_de_socio|as_crispy_field }}
+                    </div>
+                    <div class="form-group col-md-3 mb-0">
+                      {{ form.dni|as_crispy_field }}
+                    </div>
+                    <div class="form-group col-md-3 mb-0">
+                        {{ form.fecha_de_nacimiento|as_crispy_field }}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-3 mb-0">
+                      {{ form.nombre|as_crispy_field }}
+                    </div>
+                    <div class="form-group col-md-3 mb-0">
+                        {{ form.apellidos|as_crispy_field }}
+                    </div>
+                </div>
+                <!--2do row-->
+                <div class="form-row">
+                    <div class="form-group col-md-6 mb-0">
+                        {{ form.direccion|as_crispy_field }}
+                    </div>
+                    <div class="form-group col-md-4 mb-0">
+                        {{ form.localidad|as_crispy_field }}
+                    </div>
+                    <div class="form-group col-md-2 mb-0">
+                        {{ form.codigo_postal|as_crispy_field }}
+                    </div>
+                </div>
+                <!--3er row-->
+                <div class="form-row">
+                    <div class="form-group col-md-4 mb-0">
+                        {{ form.telefono_fijo|as_crispy_field }}
+                    </div>
+                    <div class="form-group col-md-4 mb-0">
+                        {{ form.telefono_movil|as_crispy_field }}
+                    </div>
+                    <div class="form-group col-md-4 mb-0">
+                        {{ form.estatus|as_crispy_field }}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6 mb-0">
+                        {{ form.años_pagados|as_crispy_field }}
+                    </div>
+                    <div class="form-group col-md-6 mb-0">
+                        {{ form.pago_año_actual|as_crispy_field }}
+                    </div>
+                </div>
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Actualizar</button>
+            </div>
+        </form>
+    </div>
+{% endblock content %}

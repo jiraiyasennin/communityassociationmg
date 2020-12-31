@@ -1,0 +1,31 @@
+{% extends "communitymgr/community_base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+{% block styles %}
+    <link href="{% static 'communitymgr/login.css' %}" rel="stylesheet" />
+{% endblock %}
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+  
+      <!-- Icon -->
+      <div class="fadeIn first">
+        <img src="#" id="icon" alt="image" />
+      </div>
+  
+      <!-- Login Form -->
+      <form>
+        <input type="text" id="login" class="fadeIn second" name="login" placeholder="usuario">
+        <input type="text" id="password" class="fadeIn third" name="login" placeholder="contraseña">
+        <input type="submit" class="fadeIn fourth" value="Log In">
+      </form>
+  
+      <!-- Remind Passowrd -->
+      <div id="formFooter">
+        <a class="underlineHover" href="#">Recuperar Password?</a>
+      </div>
+  
+    </div>
+  </div>
+{% endblock content %}

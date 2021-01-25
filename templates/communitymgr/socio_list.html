@@ -3,16 +3,55 @@
 {% load crispy_forms_tags %}
 {% block content %}
  {% if socios %}
+   <script type="text/javascript" class="init">
+    $(document).ready(function() {
+        $('#listadosocios').DataTable({
+           "paging": false,
+            "columnDefs": [
+            { "width": "1%", "targets": 0 }
+        ]},);
+        $.fn.dataTable.ext.search.push(
+        function( settings, data, dataIndex ) {
+        var min = parseInt( $('#min').val(), 10 );
+        var max = parseInt( $('#max').val(), 10 );
+        var age = parseFloat( data[3] ) || 0; // use data for the age column
+ 
+        if ( ( isNaN( min ) && isNaN( max ) ) ||
+             ( isNaN( min ) && age <= max ) ||
+             ( min <= age   && isNaN( max ) ) ||
+             ( min <= age   && age <= max ) )
+        {
+            return true;
+        }
+        return false;
+    }
+        );
+        var table = $('#listadosocios').DataTable();
+        $('#min, #max').keyup( function() {
+        table.draw();
+    } );
+        
+    } );
+</script>
  <h1 class="text-center">Listado de Socios</h1>
+ <table border="0" cellspacing="5" cellpadding="5">
+    <tbody><tr>
+        <td>Edad mínima:</td>
+        <td><input type="text" id="min" name="min"></td>
+        <td>Edad Máxima:</td>
+        <td><input type="text" id="max" name="max"></td>
+    </tr>
+ </tbody></table>
     <table id="listadosocios" class="display" style="width:100%">
         <thead>
             <tr>
                 <th>Número</th>
                 <th>Nombre</th>
                 <th>Apellidos</th>
-                <th>Dni</th>
+                <th>Edad</th>
                 <th>Direccion</th>
-                <th>Acciones</th>
+                <th>Fecha de Pago</th>
+               <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -21,9 +60,10 @@
                 <td>{{socio.numero_de_socio}}</td>
                 <td>{{socio.nombre}}</td>
                 <td>{{socio.apellidos}}</td>
-                <td>{{socio.dni}}</td>
+                <td>{{socio.edad}}</td>
                 <td>{{socio.direccion}}</td>
-                <td><a href='{% url 'detalle-socio' socio.id %}'>Ver</a>   |   <a href='{% url 'actualiza-socio' socio.id%}'>Modificar</a></td>
+                <td>{{socio.fecha_de_pago}}</td>
+                <td><a href='{% url 'detalle-socio' socio.id %}'>Ver</a>   |   <a href='{% url 'actualiza-socio' socio.id%}'>Modificar</a>  |   <a href='#'>Pago</a></td>
             </tr>
     {% endfor %}
         </tbody>
@@ -31,15 +71,4 @@
     {% else %}
         <p>No hay socios en la lista</p>
 {% endif %}
-<script type="text/javascript" class="init">
-    $(document).ready(function() {
-        $('#listadosocios').DataTable({
-            dom: 'Bfrtip',
-            buttons: [
-            'csv', 'excel'],
-            "columnDefs": [
-            { "width": "1%", "targets": 0 }
-        ]},);
-    } );
-</script>
 {% endblock content %}

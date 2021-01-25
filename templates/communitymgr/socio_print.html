@@ -1,0 +1,42 @@
+{% extends "communitymgr/community_base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+ {% if socios %}
+ <script type="text/javascript" class="init">
+    $(document).ready(function() {
+        $('#listadosocios').DataTable({
+            dom: 'Bfrtip',
+            "paging": false,
+            buttons: [
+            'csv', 'excel'],
+            "columnDefs": [
+            { "width": "30%", "targets": 0 }
+        ]},);
+    } );
+</script>
+ <h1 class="text-center">Listado de Impresión de  Socios</h1>
+    <table id="listadosocios" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>Socio</th>
+                <th>Direccion</th>
+                <th>Código Postal</th>
+                <th>Ciudad</th>
+            </tr>
+        </thead>
+        <tbody>
+    {% for socio in socios %}
+            <tr>
+                <td>{{socio.nombre}} {{socio.apellidos}}</td>
+                <td>{{socio.direccion}}</td>
+                <td>{{socio.codigo_postal}}</td>
+                <td>{{socio.localidad}}</td>
+            </tr>
+    {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p>No hay socios en la lista</p>
+{% endif %}
+{% endblock content %}

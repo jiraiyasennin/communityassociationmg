@@ -5,8 +5,6 @@ from .forms import FormularioRegistroSocio
 from django.views.generic import ListView, CreateView, DetailView, UpdateView
 from django.contrib import messages
 
-
-
 #Login de usuario
 
 def loginUsuario(request):
@@ -19,11 +17,18 @@ class SociosListView(ListView):
     template_name = 'communitymgr/socio_list.html'
     context_object_name = 'socios'
     ordering = ['numero_de_socio']
-    
+
+#Clase que genera el listado de socios
+class SociosPrintView(ListView):
+    model = socio
+    template_name = 'communitymgr/socio_print.html'
+    context_object_name = 'socios'
+    ordering = ['numero_de_socio']
+
+
 #Clase que muestra el detalle de cada socio
 class DetalleSocio(DetailView):
     model = socio
-    
 
 
 #Clase que genera el formulario de registro de los socios

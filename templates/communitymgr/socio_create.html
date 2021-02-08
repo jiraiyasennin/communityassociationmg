@@ -22,6 +22,9 @@
                     <div class="form-group col-md-3 mb-0">
                         {{ form.fecha_de_alta|as_crispy_field }}
                     </div>
+                    <div class="form-group col-md-3 mb-0">
+                        {{ form.fecha_de_pago|as_crispy_field }}
+                    </div>
                 </div>
                 <div class="form-row">
                     
@@ -31,6 +34,9 @@
                     <div class="form-group col-md-3 mb-0">
                         {{ form.apellidos|as_crispy_field }}
                     </div>
+                    <div class="form-group col-md-3 mb-0">
+                        {{ form.email|as_crispy_field }}
+                      </div>
                 </div>
                 <!--2do row-->
                 <div class="form-row">
@@ -47,10 +53,7 @@
                 <!--3er row-->
                 <div class="form-row">
                     <div class="form-group col-md-4 mb-0">
-                        {{ form.telefono_fijo|as_crispy_field }}
-                    </div>
-                    <div class="form-group col-md-4 mb-0">
-                        {{ form.telefono_movil|as_crispy_field }}
+                        {{ form.telefono|as_crispy_field }}
                     </div>
                     <div class="form-group col-md-4 mb-0">
                         {{ form.estatus|as_crispy_field }}

@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 from .views import (
     SociosListView,
@@ -11,7 +11,7 @@ from webcode.portfolio.communitymgr.views import SociosListView
 
 
 urlpatterns = [
-    path('login/', views.loginUsuario, name='login-admin'),
+    path('accounts/', include('django.contrib.auth.urls')),
     path('registrosocio/', views.RegistroDeSocios, name='crear-socio'),
     path('listasocios/', SociosListView.as_view(), name='lista-socios'),
     path('imprimirsocios/', SociosPrintView.as_view(), name='imprimir-socios'),

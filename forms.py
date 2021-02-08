@@ -7,11 +7,10 @@ class FormularioRegistroSocio(ModelForm):
     #Sobre escribimos el atributo fecha_de_nacimiento para agregar
     # el widget que añade el placeholder con el ejemplo de la fecha
     fecha_de_nacimiento = forms.DateField(
-        required=False,
+        required=True,
         widget=forms.TextInput(attrs={"placeholder": "Ejemplo: 14/05/1968", 'type': 'date'}),
     )
-    fecha_de_alta = forms.DateField(
-        required=False,
+    fecha_de_alta = forms.DateField(error_messages={'required': "Dato Requerido",},
         widget=forms.TextInput(attrs={"placeholder": "Ejemplo: 20/02/2021", 'type': 'date'}),
     )
     fecha_de_pago = forms.DateField(

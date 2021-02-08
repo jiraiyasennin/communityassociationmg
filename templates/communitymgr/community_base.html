@@ -23,6 +23,8 @@
         <link href="{% static 'dashboard/dist/css/styles.css' %}" rel="stylesheet" />
         <link href="{% static 'communitymgr/DataTables-1.10.23/css/jquery.dataTables.min.css' %}" rel="stylesheet" crossorigin="anonymous" />
         <link rel="stylesheet" type="text/css" href="{% static 'communitymgr/Buttons-1.6.5/css/buttons.dataTables.min.css' %}">
+        
+        <link rel="https://cdn.datatables.net/colreorder/1.5.3/css/colReorder.dataTables.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
@@ -45,17 +47,18 @@
             <!-- Navbar Pull right-->
             <div class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0"></div>
             <!-- Navbar-->
+            {% if user.is_authenticated %}
             <ul class="navbar-nav ml-auto ml-md-0">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                        <a class="dropdown-item" href="#">Settings</a>
-                        <a class="dropdown-item" href="#">Activity Log</a>
+                        <a class="dropdown-item" href="#">Cambiar Contraseña</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Logout</a>
+                        <a class="dropdown-item" href="{% url 'logout' %}">Salir</a>
                     </div>
                 </li>
             </ul>
+            {% endif %}
         </nav>
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
@@ -63,10 +66,11 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Menu</div>
-                            <a class="nav-link" href="{% url 'login-admin' %}">
+                            <a class="nav-link" href="#">
                                 <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
                                 Inicio
                             </a>
+                            {% if user.is_authenticated %}
                             <a class="nav-link" href="{% url 'lista-socios' %}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-list-ol"></i></div>
                                 Listado de socios
@@ -79,11 +83,15 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-print"></i></div>
                                 Imprimir Etiquetas
                             </a>
+                            {% endif %}
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
-                        <div class="small">Logged in as:</div>
-                        User
+                        {% if user.is_authenticated %}
+                            <h2>{{user}}</h2>
+                        {% else %}
+                            <div>Bienvenido</div>
+                        {% endif %}
                     </div>
                 </nav>
             </div>
@@ -112,17 +120,14 @@
                 </footer>
             </div>
         </div>
-                                                    <!--Links Datatables
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
-        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-        <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.flash.min.js"></script>
-        <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.html5.min.js"></script>-->
+                                                    <!--Links Datatables-->
         <script type="text/javascript" src="{% static 'communitymgr/JSZip-2.5.0/jszip.min.js' %}"></script>
         <script type="text/javascript" charset="utf8" src="{% static 'communitymgr/DataTables-1.10.23/js/jquery.dataTables.min.js' %}"></script>
         <script type="text/javascript" src="{% static 'communitymgr/Buttons-1.6.5/js/dataTables.buttons.min.js' %}"></script>
         <script type="text/javascript" src="{% static 'communitymgr/Buttons-1.6.5/js/buttons.flash.min.js' %}"></script>
-        <script type="text/javascript" src="{% static 'communitymgr/Buttons-1.6.5/js/buttons.html5.min.js' %}"></script>                                                
+        <script type="text/javascript" src="{% static 'communitymgr/Buttons-1.6.5/js/buttons.html5.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'communitymgr/Buttons-1.6.5/js/buttons.colVis.min.js' %}"></script> 
+        <script type="text/javascript" src="{% static 'communitymgr/ColReorder-1.5.3/js/dataTables.colReorder.min.js'  %}"></script>                                            
 
         <script src="{% static 'dashboard/dist/js/scripts.js' %}"></script>
      </body>

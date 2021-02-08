@@ -1,29 +1,27 @@
 {% extends "communitymgr/community_base.html" %}
 {% load crispy_forms_tags %}
+{% load widget_tweaks %}
 {% load static %}
 {% block content %}
 {% block styles %}
     <link href="{% static 'communitymgr/login.css' %}" rel="stylesheet" />
 {% endblock %}
+{% if form.errors %}
+    <p>El usuario o la contraseña es incorrecto.</p>
+  {% endif %}
+
 <div class="wrapper fadeInDown">
     <div id="formContent">
       <!-- Tabs Titles -->
-  
+      <h2>¡Hasta la próxima vez!</h2>
       <!-- Icon -->
       <div class="fadeIn first">
-        <img src="#" id="icon" alt="image" />
+        <img class="img-responsive img-thumbnail" src="{% static 'communitymgr/img/aavvmaresme.jpg' %}" id="icon" alt="image" />
       </div>
-  
-      <!-- Login Form -->
-      <form>
-        <input type="text" id="login" class="fadeIn second" name="login" placeholder="usuario">
-        <input type="text" id="password" class="fadeIn third" name="login" placeholder="contraseña">
-        <input type="submit" class="fadeIn fourth" value="Log In">
-      </form>
-  
+        
       <!-- Remind Passowrd -->
       <div id="formFooter">
-        <a class="underlineHover" href="#">Recuperar Password?</a>
+        <a class="underlineHover" href="{% url 'login' %}">Login</a>
       </div>
   
     </div>

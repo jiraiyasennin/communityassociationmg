@@ -1,0 +1,40 @@
+{% extends "communitymgr/community_base.html" %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+{% load static %}
+{% block content %}
+{% block styles %}
+    <link href="{% static 'communitymgr/login.css' %}" rel="stylesheet" />
+{% endblock %}
+{% if form.errors %}
+    <p>El usuario o la contraseña es incorrecto.</p>
+  {% endif %}
+
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+      {% if next %}
+    <h2>Debe autenticarse para ver esta página</h2>
+      {% endif %}
+  
+      <!-- Icon -->
+      <div class="fadeIn first">
+        <img class="img-responsive img-thumbnail" src="{% static 'communitymgr/img/aavvmaresme.jpg' %}" id="icon" alt="image" />
+      </div>
+  
+      <!-- Login Form -->
+      <form method="POST">
+        {% csrf_token %}
+        {{ form.username|add_class:'fadeIn second'|attr:"placeholder:usuario"|attr:"id:login"}}
+        {{ form.password|add_class:'fadeIn third'|attr:"placeholder:contraseña"|attr:"id:password"|attr:"type:password"}}
+        <input type="submit" class="fadeIn fourth" value="Log In">
+      </form>
+  
+      <!-- Remind Passowrd -->
+      <div id="formFooter">
+        <a class="underlineHover" href="#">Cambiar Password</a>
+      </div>
+  
+    </div>
+  </div>
+{% endblock content %}

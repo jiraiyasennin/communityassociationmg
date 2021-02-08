@@ -36,6 +36,11 @@
         <td>{{object.dni}}</td>
       </tr>
       <tr>
+        <tr>
+          <td>email:</td>
+          <td>{{object.email}}</td>
+        </tr>
+        <tr>
         <td>Fecha de Alta</td>
         <td>{{object.fecha_de_alta}}</td>
       </tr>
@@ -59,16 +64,12 @@
         <td>Localidad:</td>
         <td>{{object.localidad}}</td>
       </tr>
-      {% if object.telefono_fijo %}
+      {% if object.telefono %}
       <tr>
-        <td>Teléfono Fijo:</td>
-        <td>{{object.telefono_fijo}}</td>
+        <td>Teléfono:</td>
+        <td>{{object.telefono}}</td>
       </tr>
       {% endif %}
-      <tr>
-        <td>Teléfono móvil:</td>
-        <td>{{object.telefono_movil}}</td>
-      </tr>
       <tr>
         <td>Fecha de Pago</td>
         <td>{{object.fecha_de_pago}}</td>

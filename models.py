@@ -8,15 +8,15 @@ class socio(models.Model):
     nombre = models.CharField(max_length=40)
     apellidos = models.CharField(max_length=50)
     dni = models.CharField(max_length=15)
+    email = models.EmailField(null=True)
     fecha_de_nacimiento = models.DateField()
     direccion = models.CharField(max_length=200)
     codigo_postal = models.IntegerField()
     localidad = models.CharField(max_length=20)
-    telefono_fijo = models.IntegerField(null = True)
-    telefono_movil = models.IntegerField()
-    fecha_de_alta = models.DateField(default=date.today, blank=True)
-    fecha_de_pago = models.DateField(default=date.today, blank=True)
-    fecha_defuncion = models.DateField(default=date.today, blank=True)
+    telefono = models.CharField(max_length=40, null = True)
+    fecha_de_alta = models.DateField(default=date.today)
+    fecha_de_pago = models.DateField(null=True)
+    fecha_defuncion = models.DateField(null=True)
     #Constantes del pago actual
     #PAGADO = 'PAGADO'
     #NOPAGADO = 'NO PAGADO'

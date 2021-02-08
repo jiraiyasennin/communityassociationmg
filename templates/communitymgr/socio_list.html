@@ -8,29 +8,14 @@
         $('#listadosocios').DataTable({
            "paging": false,
             "columnDefs": [
-            { "width": "1%", "targets": 0 }
-        ]},);
-        $.fn.dataTable.ext.search.push(
-        function( settings, data, dataIndex ) {
-        var min = parseInt( $('#min').val(), 10 );
-        var max = parseInt( $('#max').val(), 10 );
-        var age = parseFloat( data[3] ) || 0; // use data for the age column
- 
-        if ( ( isNaN( min ) && isNaN( max ) ) ||
-             ( isNaN( min ) && age <= max ) ||
-             ( min <= age   && isNaN( max ) ) ||
-             ( min <= age   && age <= max ) )
-        {
-            return true;
-        }
-        return false;
-    }
-        );
-        var table = $('#listadosocios').DataTable();
-        $('#min, #max').keyup( function() {
-        table.draw();
-    } );
-        
+            { "width": "1%", "targets": 0 },
+            
+        ], 
+        dom: 'Bfrtip',
+            colReorder: true,
+            buttons: [
+            'colvis'
+            ]},);
     } );
 </script>
  <h1 class="text-center">Listado de Socios</h1>
@@ -45,10 +30,9 @@
     <table id="listadosocios" class="display" style="width:100%">
         <thead>
             <tr>
-                <th>Número</th>
                 <th>Nombre</th>
                 <th>Apellidos</th>
-                <th>Edad</th>
+                <th>Estado</th>
                 <th>Direccion</th>
                 <th>Fecha de Pago</th>
                <th>Acciones</th>
@@ -57,13 +41,16 @@
         <tbody>
     {% for socio in socios %}
             <tr>
-                <td>{{socio.numero_de_socio}}</td>
                 <td>{{socio.nombre}}</td>
                 <td>{{socio.apellidos}}</td>
-                <td>{{socio.edad}}</td>
+                {% if socio.estatus == "AL" %}
+                 <td class="text-center">Alta</td>
+                {% else %}
+                 <td class="text-center">Baja</td>
+                {% endif %}
                 <td>{{socio.direccion}}</td>
                 <td>{{socio.fecha_de_pago}}</td>
-                <td><a href='{% url 'detalle-socio' socio.id %}'>Ver</a>   |   <a href='{% url 'actualiza-socio' socio.id%}'>Modificar</a>  |   <a href='#'>Pago</a></td>
+                <td><a href='{% url 'detalle-socio' socio.id %}'>Ver</a>   |   <a href='{% url 'actualiza-socio' socio.id%}'>Modificar</a>  |   <a href='{% url 'actualiza-socio' socio.id%}'>Pagar</a></td>
             </tr>
     {% endfor %}
         </tbody>

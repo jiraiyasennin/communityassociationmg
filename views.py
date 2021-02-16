@@ -55,6 +55,7 @@ class ModificarSocio(LoginRequiredMixin, UpdateView):
 
 
 #Clase que lee el archivo CSV y guarda los datos en el bd
+@login_required
 def upload_file_view(request):
     form = CsvModelForm(request.POST or None, request.FILES or None)
     if form.is_valid():

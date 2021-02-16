@@ -1,14 +1,13 @@
 from django.urls import path, include
 from . import views
-from .views import (
+from webcode.portfolio.communitymgr.views import (
     SociosListView,
     SociosPrintView,
     RegistroDeSocios,
     ModificarSocio,
-    DetalleSocio
+    DetalleSocio,
+    upload_file_view
 )
-from webcode.portfolio.communitymgr.views import SociosListView
-
 
 urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
@@ -17,4 +16,5 @@ urlpatterns = [
     path('imprimirsocios/', SociosPrintView.as_view(), name='imprimir-socios'),
     path('socio/<int:pk>/update', ModificarSocio.as_view(), name='actualiza-socio'),
     path('socio/<int:pk>/detalles', DetalleSocio.as_view(), name='detalle-socio'),
+    path('upload_file/', views.upload_file_view, name='subir-csv'),
 ]

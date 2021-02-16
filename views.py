@@ -1,11 +1,16 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
-from . models import socio
+from .models import socio
 from .forms import FormularioRegistroSocio
 from django.views.generic import ListView, CreateView, DetailView, UpdateView
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
+#Dependencias de subida de archivos
+from .forms import CsvModelForm
+from .models import Csv
+import csv, datetime
+
 
 
 #Clase que genera el listado de socios
@@ -47,4 +52,68 @@ class ModificarSocio(LoginRequiredMixin, UpdateView):
    form_class = FormularioRegistroSocio
    template_name = 'communitymgr/actualizasocio_form.html'
    success_url = '/apps/aavvmaresme/listasocios/'
-    
+
+
+#Clase que lee el archivo CSV y guarda los datos en el bd
+def upload_file_view(request):
+    form = CsvModelForm(request.POST or None, request.FILES or None)
+    if form.is_valid():
+        form.save()
+        form = CsvModelForm()
+        obj = Csv.objects.get(activated=False)
+        with open(obj.file_name.path, 'r') as f:
+            reader = csv.reader(f)
+            for i, row in enumerate(reader):
+                if i == 0:
+                    pass
+                else:
+                    años = ""
+                   
+                    if row[10] != "":
+                         años = row[10]
+                    else:
+                       pass
+                    if row[10] or row[11] != "":
+                        años += '  '+row[11]
+                    else:
+                        pass
+                    if row[11] or row[12] != "":
+                        años +='  '+row[12]
+                    else:
+                        pass
+                    if row[12] or row[13] != "":
+                        años += '  '+row[13]
+                    else:
+                        pass
+                    if row[13] or row[14] != "":
+                        años += '  '+row[14]
+                    else:
+                        pass
+                    if row[14] or row[15] != "":
+                        años +='  '+row[15]
+                    else:
+                        pass
+                    #Verificar y corregir el campo estatus
+                    if row[16].upper() == "ALTA":
+                        estatus = "AL"
+                    else:
+                        estatus = "BA" 
+                    
+                    socio.objects.create(
+                        numero_de_socio = row[0],
+                        nombre = row[2].capitalize(),
+                        apellidos = row[1].title(),
+                        dni = row[3],
+                        email = row[9],
+                        #Se cambia el formato de la fecha
+                        fecha_de_nacimiento = datetime.datetime.strptime(row[4], "%d/%m/%Y").strftime("%Y-%m-%d"),
+                        direccion = row[5].title(),
+                        codigo_postal = row[6],
+                        localidad = row[7],
+                        telefono = row[8],
+                        estatus = estatus,
+                        años_pagados = años,
+                    )
+                    obj.activated=True
+                    obj.save()
+    return render(request, 'communitymgr/upload.html', {'form': form})

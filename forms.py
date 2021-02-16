@@ -1,16 +1,18 @@
 from django.forms import ModelForm
 from webcode.portfolio.communitymgr.models import socio
 from django import forms
+from .models import Csv
+from django.utils.translation import ugettext_lazy as _
 
-
+#clase que genera el formulario de datos de usuario
+#Sobre escribimos los atributos de los campos para agregar
+#el widget que añade el placeholder con información
 class FormularioRegistroSocio(ModelForm):
-    #Sobre escribimos el atributo fecha_de_nacimiento para agregar
-    # el widget que añade el placeholder con el ejemplo de la fecha
     fecha_de_nacimiento = forms.DateField(
         required=True,
         widget=forms.TextInput(attrs={"placeholder": "Ejemplo: 14/05/1968", 'type': 'date'}),
     )
-    fecha_de_alta = forms.DateField(error_messages={'required': "Dato Requerido",},
+    fecha_de_alta = forms.DateField(required=False, error_messages={'required': "Dato Requerido",},
         widget=forms.TextInput(attrs={"placeholder": "Ejemplo: 20/02/2021", 'type': 'date'}),
     )
     fecha_de_pago = forms.DateField(
@@ -31,4 +33,12 @@ class FormularioRegistroSocio(ModelForm):
         fields = '__all__'
         
         
-        
+# Clase que genera el formulario de subida del archivo
+# Agrega una etiqueta custom
+class CsvModelForm(forms.ModelForm):
+    class Meta:
+        model = Csv
+        fields = ('file_name',)
+        labels = {
+            'file_name': _('Seleccione Archivo'),
+        }     

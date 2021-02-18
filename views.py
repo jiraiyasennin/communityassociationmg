@@ -10,6 +10,9 @@ from django.contrib.auth.decorators import login_required
 from .forms import CsvModelForm
 from .models import Csv
 import csv, datetime
+#Dependencias cambio de password
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
 
 
 
@@ -118,3 +121,18 @@ def upload_file_view(request):
                     obj.activated=True
                     obj.save()
     return render(request, 'communitymgr/upload.html', {'form': form})
+
+@login_required
+def cambio_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user) #important!!
+            messages.success(request, 'El password ha sido cambiado correctamente')
+            return redirect('cambio-password')
+        else:
+            messages.error(request, 'Por favor corregir el error')
+    else:
+        form = PasswordChangeForm(request.user)
+    return render(request, 'registration/password_change.html', {'form':form})

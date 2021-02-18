@@ -11,6 +11,7 @@ from webcode.portfolio.communitymgr.views import (
 
 urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
+    path('change_password/', views.cambio_password, name='cambio-password'),
     path('registrosocio/', views.RegistroDeSocios, name='crear-socio'),
     path('listasocios/', SociosListView.as_view(), name='lista-socios'),
     path('imprimirsocios/', SociosPrintView.as_view(), name='imprimir-socios'),

@@ -1,0 +1,140 @@
+socio_1 = socio(numero_de_socio='5', nombre='Jose',
+          apellidos='Zuloaga',dni='3456798098P',
+          email='josez@email.com', 
+          fecha_de_nacimiento='10/10/1990', 
+          direccion='Calle Pisa 40 3-1', 
+          codigo_postal='08019', 
+          localidad='Barcelona', 
+          telefono='690876234')
+socio_1.save()
+
+socio_2 = socio(numero_de_socio='6', nombre='Josh',
+          apellidos='Martins',dni='45612312T',
+          email='joshm@email.com', 
+          fecha_de_nacimiento='1998-11-1', 
+          direccion='Calle Pisa 35 2-3', 
+          codigo_postal='08019', 
+          localidad='Barcelona', 
+          telefono='623654378')
+socio_2.save()
+
+socio_3 = socio(numero_de_socio='7', nombre='Karlos',
+          apellidos='Rodriguez',dni='3456768098P',
+          email='karlosr@email.com', 
+          fecha_de_nacimiento='1970-01-22', 
+          direccion='Calle Olimpiadas 23 1-1', 
+          codigo_postal='08019', 
+          localidad='Barcelona', 
+          telefono='690874234')
+
+socio_3.save()
+
+socio_4 = socio(numero_de_socio='8', nombre='Jose',
+          apellidos='Zuloaga',dni='3456798098P',
+          email='josez@email.com', 
+          fecha_de_nacimiento='1990-10-21', 
+          direccion='Calle Pisa 40 3-1', 
+          codigo_postal='08019', 
+          localidad='Barcelona', 
+          telefono='690876234')
+
+socio_4.save()
+
+socio_5 = socio(numero_de_socio='9', nombre='Mikkel',
+          apellidos='Reise',dni='3426798098P',
+          email='mikkelr@email.com', 
+          fecha_de_nacimiento='2000-02-02', 
+          direccion='Calle Maresme 60 6-2', 
+          codigo_postal='08019', 
+          localidad='Barcelona', 
+          telefono='610876234')
+
+socio_5.save()
+
+socio_6 = socio(numero_de_socio='10', nombre='Frank',
+          apellidos='Simpson',dni='234765890P',
+          email='franks@email.com', 
+          fecha_de_nacimiento='1981-05-28', 
+          direccion='Calle Maresme 41 1-4', 
+          codigo_postal='08019', 
+          localidad='Barcelona', 
+          telefono='680876234')
+
+socio_6.save()
+
+socio_7 = socio(numero_de_socio='11', nombre='Inocente',
+          apellidos='Presunto',dni='3456658098R',
+          email='inocenciop@email.com', 
+          fecha_de_nacimiento='1979-12-13', 
+          direccion='Calle Boloña 40 3-1', 
+          codigo_postal='08019', 
+          localidad='Barcelona', 
+          telefono='620875237')
+
+socio_7.save()
+
+socio_8 = socio(numero_de_socio='12', nombre='Luke',
+          apellidos='Skywalker',dni='000000001S',
+          email='lukes@starwars.com', 
+          fecha_de_nacimiento='1945-04-15', 
+          direccion='Calle Boloña 10 2-4', 
+          codigo_postal='08019', 
+          localidad='Barcelona', 
+          telefono='690876233')
+
+socio_8.save()
+
+socio_9 = socio(numero_de_socio='13', nombre='Laura',
+          apellidos='Palmer',dni='555555555N',
+          email='laurap@twinpeaks.com', 
+          fecha_de_nacimiento='1960-01-01', 
+          direccion='Calle Maresme 80 1-1', 
+          codigo_postal='08019', 
+          localidad='Barcelona', 
+          telefono='60000000')
+
+socio_9.save()
+
+socio_10 = socio(numero_de_socio='14', nombre='Charles',
+          apellidos='Aznavour',dni='456980234R',
+          email='caznavour@music.com', 
+          fecha_de_nacimiento='1940-08-09', 
+          direccion='Calle Pallars 60 1-4', 
+          codigo_postal='08019', 
+          localidad='Barcelona', 
+          telefono='609794246')
+
+socio_10.save()
+
+socio_11 = socio(numero_de_socio='15', nombre='Luigi',
+          apellidos='Bros',dni='456480234R',
+          email='luigi@nintendo.com', 
+          fecha_de_nacimiento='1986-01-12', 
+          direccion='Calle Pallars 30 1-2', 
+          codigo_postal='08019', 
+          localidad='Barcelona', 
+          telefono='606794246')
+
+socio_11.save()
+
+socio_12 = socio(numero_de_socio='16', nombre='Gary',
+          apellidos='Moore',dni='123480234R',
+          email='garym@blues.com', 
+          fecha_de_nacimiento='1954-01-12', 
+          direccion='Calle Pallars 10 2-2', 
+          codigo_postal='08019', 
+          localidad='Barcelona', 
+          telefono='605794246')
+
+socio_12.save()
+
+socio_13 = socio(numero_de_socio='17', nombre='Naruto',
+          apellidos='Uzumaki',dni='452480234T',
+          email='narutou@konoha.com', 
+          fecha_de_nacimiento='1981-15-02', 
+          direccion='Calle Pujades 22 4-2', 
+          codigo_postal='08019', 
+          localidad='Barcelona', 
+          telefono='606784246')
+
+socio_13.save()

@@ -131,7 +131,7 @@ socio_12.save()
 socio_13 = socio(numero_de_socio='17', nombre='Naruto',
           apellidos='Uzumaki',dni='452480234T',
           email='narutou@konoha.com', 
-          fecha_de_nacimiento='1981-15-02', 
+          fecha_de_nacimiento='1981-02-15', 
           direccion='Calle Pujades 22 4-2', 
           codigo_postal='08019', 
           localidad='Barcelona', 

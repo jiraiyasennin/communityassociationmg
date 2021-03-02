@@ -2,8 +2,9 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 from .models import socio
 from .forms import FormularioRegistroSocio
-from django.views.generic import ListView, CreateView, DetailView, UpdateView
+from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 #Dependencias de subida de archivos
@@ -50,12 +51,24 @@ def RegistroDeSocios(request):
     return render(request, 'communitymgr/socio_create.html', {'form': form})
 
 #Clase que genera el formulario para modificar los datos del socio
-class ModificarSocio(LoginRequiredMixin, UpdateView):
+class ModificarSocio(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
    model = socio
    form_class = FormularioRegistroSocio
    template_name = 'communitymgr/actualizasocio_form.html'
-   success_url = '/apps/aavvmaresme/listasocios/'
+   success_url = '/apps/aavvmaresme/'
+   success_message = 'El socio ha sido modificado correctamente'
 
+#Clase que borra el usuario elegido
+class BorrarSocio(LoginRequiredMixin, DeleteView):
+    model = socio
+    template_name = 'communitymgr/socio_delete.html'
+    success_url = '/apps/aavvmaresme/'
+    success_message = 'El socio ha sido borrado correctamente'
+    
+    # Función que muestra el mensaje al borrar el socio
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, self.success_message)
+        return super(BorrarSocio, self).delete(request, *args, **kwargs)
 
 #Clase que lee el archivo CSV y guarda los datos en el bd
 @login_required

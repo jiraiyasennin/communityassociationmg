@@ -6,6 +6,7 @@ from webcode.portfolio.communitymgr.views import (
     RegistroDeSocios,
     ModificarSocio,
     DetalleSocio,
+    BorrarSocio,
     upload_file_view
 )
 
@@ -18,5 +19,6 @@ urlpatterns = [
     path('imprimirsocios/', SociosPrintView.as_view(), name='imprimir-socios'),
     path('socio/<int:pk>/update', ModificarSocio.as_view(), name='actualiza-socio'),
     path('socio/<int:pk>/detalles', DetalleSocio.as_view(), name='detalle-socio'),
+    path('socio/<int:pk>/delete', BorrarSocio.as_view(), name='borrar-socio'),
     path('upload_file/', views.upload_file_view, name='subir-csv'),    
 ]

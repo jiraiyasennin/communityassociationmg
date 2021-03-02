@@ -72,7 +72,7 @@
                 {% endif %}
                 <td>{{socio.direccion}}</td>
                 <td>{{socio.fecha_de_pago}}</td>
-                <td><a href='{% url 'detalle-socio' socio.id %}'>Ver</a>   |   <a href='{% url 'actualiza-socio' socio.id%}'>Modificar</a></td>
+                <td><a href='{% url 'detalle-socio' socio.id %}'>Ver</a>   |   <a href='{% url 'actualiza-socio' socio.id%}'>Modificar</a> | <a href='{% url 'borrar-socio' socio.id%}'>Borrar</a></td>
             </tr>
     {% endfor %}
         </tbody>

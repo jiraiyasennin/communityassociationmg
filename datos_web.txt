@@ -1,7 +1,7 @@
 socio_1 = socio(numero_de_socio='5', nombre='Jose',
           apellidos='Zuloaga',dni='3456798098P',
           email='josez@email.com', 
-          fecha_de_nacimiento='10/10/1990', 
+          fecha_de_nacimiento='1990-10-10', 
           direccion='Calle Pisa 40 3-1', 
           codigo_postal='08019', 
           localidad='Barcelona', 
